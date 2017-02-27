@@ -8,6 +8,10 @@ if [ ! -d "/config/log" ]; then
 	mkdir /config/log
 fi
 
+if [ ! -d "/config/etc" ]; then
+	mkdir /config/etc
+fi
+
 env > /config/log/env.log
 
 if [ ! -f "${TELEGRAF_CONFIG_PATH}" ]; then
