@@ -15,7 +15,7 @@ fi
 env > /config/log/env.log
 
 if [ ! -f "${TELEGRAF_CONFIG_PATH}" ]; then
-	telegraf --input-filter cpu:mem:net:docker --output-filter influxdb:telegraf config > ${TELEGRAF_CONFIG_PATH}.orig
+	telegraf --input-filter cpu:mem:net:disk:diskio:kernel:processes:swap:system:docker --output-filter influxdb:telegraf config > ${TELEGRAF_CONFIG_PATH}.orig
 	cat ${TELEGRAF_CONFIG_PATH}.orig | grep -v "^\s*#" | sed '/^\s*$/d' > ${TELEGRAF_CONFIG_PATH}
 fi
 

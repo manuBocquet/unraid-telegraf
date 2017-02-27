@@ -1,4 +1,4 @@
-FROM telegraf:1.1.2
+FROM telegraf:latest
 
 EXPOSE 8125/udp 8092/udp 8094
 VOLUME [ "/config" ]
