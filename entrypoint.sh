@@ -4,6 +4,8 @@ set -e
 TELEGRAF_CONFIG_PATH=/config/etc/telegraf.conf
 export TELEGRAF_CONFIG_PATH
 
+env > /config/log/env.log
+
 if [ ! -f "${TELEGRAF_CONFIG_PATH}" ]; then
 	telegraf --input-filter cpu:mem:net:docker --output-filter influxdb:telegraf config > ${TELEGRAF_CONFIG_PATH}.orig
 	cat ${TELEGRAF_CONFIG_PATH}.orig | grep -v "^\s*#" | sed '/^\s*$/d' > ${TELEGRAF_CONFIG_PATH}
