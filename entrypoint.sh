@@ -4,6 +4,10 @@ set -e
 TELEGRAF_CONFIG_PATH=/config/etc/telegraf.conf
 export TELEGRAF_CONFIG_PATH
 
+if [ ! -d "/config/log" ]; then
+	mkdir /config/log
+fi
+
 env > /config/log/env.log
 
 if [ ! -f "${TELEGRAF_CONFIG_PATH}" ]; then
@@ -17,6 +21,10 @@ fi
 
 if [ -n "${MyHOSTNAME}" ]; then
 	sed -i '/^\s*hostname/c\  hostname = "'"${MyHOSTNAME}"'" ' ${TELEGRAF_CONFIG_PATH}
+fi
+
+if [ -n "${LOGFILE}" ]; then
+	sed -i '/^\s*logfile/c\  logfile = "'"${LOGFILE}"'" ' ${TELEGRAF_CONFIG_PATH}
 fi
 
 if [ "${1:0:1}" = '-' ]; then

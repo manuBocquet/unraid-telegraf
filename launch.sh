@@ -1,0 +1,1 @@
+docker run -v /mnt/user/appdata/telegraf:/config -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc:/rootfs/proc:ro -v /sys:/rootfs/sys:ro /etc:/rootfs/etc:ro -e  "INFLUX_DB=192.168.1.5:8086" manu/telegraf
